@@ -24,10 +24,31 @@ ul{
     list-style-type: none;
 }
 
-/*layout*/
+.container *{
+    border: dashed 1px green;
+}
+
 .container{
-    max-width: 1200px;
-    margin: 0 auto;
+    width: 1200px;
+    margin: 50px auto;
+    height: 700px; 
+    display: flex;
+}
+
+#contacts{
+    flex-basis: 35%;
+    display: flex;
+    flex-direction: column;
+}
+
+#chat{
+    flex-basis: 65%;
+    display: flex;
+    flex-direction: column;
+}
+
+header{
+    height: 60px;
 }
 
 /*color*/
@@ -45,4 +66,32 @@ ul{
     align-items: center;
 }
 
-/*utilities*/
+/* #contacts */
+.notifications{
+    height: 75px;
+}
+
+#contacts nav{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.search-bar{
+    height: 40px;
+}
+
+.contact-list{
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+/* #chat */
+.chat-area{
+    flex-grow: 1;
+}
+
+.chat-box{
+    height: 60px;
+    flex-shrink: 0;
+}
