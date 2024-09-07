@@ -30,7 +30,7 @@
                         <!-- contacts-left-header -->
                         <div class="contacts-left-header">
                             <div class="icon-contact"><img src="img/avatar_io.png" alt="avatar_io"></div>
-                            <div>Sofia</div>
+                            <div>Pinco Pallina</div>
                         </div>
                         <!-- contacts-right-header -->
                         <div class="contacts-right-header">
@@ -58,7 +58,7 @@
                         <!-- contact-list -->
                         <ul class="contact-list">
                             <!-- contact-link -->
-                            <li class="contact-link" v-for="contact in contacts">
+                            <li class="contact-link" v-for="( contact, index ) in contacts" @click="selectChat(index)">
                                 <div class="icon-contact"><img :src="contact.avatar" alt="avatar_1"></div>
                                 <div>
                                     <div>{{ contact.name }}</div>
@@ -73,10 +73,12 @@
                     <header>
                         <div class="chat-left-header">
                             <!-- current-chat -->
-                            <div class="current-chat icon-contact"><img src="img/avatar_1.png" alt="avatar_1"></div>
+                            <div class="current-chat icon-contact"><img :src="contacts[currentIndex].avatar" alt="avatar_1"></div>
                             <div>
-                                <div>Michele</div>
-                                <div>ultimo accesso...</div>
+                                <!-- current contact name -->
+                                <div>{{ contacts[currentIndex].name }}</div>
+                                <!-- current contact last access -->
+                                <div>ultimo accesso {{ contacts[currentIndex].messages[contacts[currentIndex].messages.length-1].date }}</div>
                             </div>
                         </div>
                         <div class="chat-right-header">
@@ -88,7 +90,8 @@
                     <!-- chat-area -->
                     <div class="chat-area">
                         <ul>
-                            <li v-for="( mess, index) in contacts[0].messages" class="contactMessage">
+                            <!-- current contact messages sent -->
+                            <li v-for="( mess, index) in contacts[currentIndex].messages" class="contactMessage">
                                 {{ mess.message }}
                             </li>
 
