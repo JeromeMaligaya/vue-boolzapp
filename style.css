@@ -147,6 +147,11 @@ i{
     height: 70px;
 }
 
+.contact-list .contact-link .last-message{
+    font-size: 10px;
+    color: rgb(165, 161, 161);
+}
+
 /* ----------- #chat */
 /* chat-area */
 .chat-area{

@@ -58,11 +58,11 @@
                         <!-- contact-list -->
                         <ul class="contact-list">
                             <!-- contact-link -->
-                            <li class="contact-link">
-                                <div class="icon-contact"><img src="img/avatar_1.png" alt="avatar_1"></div>
+                            <li class="contact-link" v-for="contact in contacts">
+                                <div class="icon-contact"><img :src="contact.avatar" alt="avatar_1"></div>
                                 <div>
-                                    <div>Sofia</div>
-                                    <div>ultimo accesso...</div>
+                                    <div>{{ contact.name }}</div>
+                                    <div class="last-message">Ultimo messaggio inivato</div>
                                 </div>
                             </li>
                         </ul>
