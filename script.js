@@ -4,6 +4,8 @@ const { createApp } = Vue
     data() {
       return {
         currentIndex: 0,
+        userNewMessage: '',
+        userMessages: [],
         contacts: [
           {
               name: 'Michele',
@@ -173,6 +175,12 @@ const { createApp } = Vue
       selectChat(index){
         this.currentIndex = index;
         console.log('chat-contact-selected', this.currentIndex);
+      },
+      sendNewMessage(){
+        this.contacts[this.currentIndex].messages.push({date: '', message: this.userNewMessage, status: 'sent'});
+        console.log('userNewMessage',this.userNewMessage)
+        console.log('contacts.messages', this.contacts[this.currentIndex].messages)
+        this.userNewMessage = '';
       }
     }
   }).mount('#app')

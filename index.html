@@ -90,17 +90,17 @@
                     <!-- chat-area -->
                     <div class="chat-area">
                         <ul>
-                            <!-- current contact messages sent -->
-                            <li v-for="( mess, index) in contacts[currentIndex].messages" class="contactMessage">
-                                {{ mess.message }}
+                            <!-- current contact messages sent and received-->
+                            <li v-for="message in contacts[currentIndex].messages" :class="{ 'userMessage': message.status === 'sent',  'contactMessage': message.status === 'received'}">
+                                {{ message.message }}
                             </li>
-
                         </ul>
                     </div>
                     <!-- chat-text -->
                     <div class="chat-text">
                         <button><i class="fa-regular fa-face-smile"></i></button>
-                        <input type="text" placeholder="Scrivi un messaggio">
+                        <!-- user new message -->
+                        <input type="text" placeholder="Scrivi un messaggio" v-model="userNewMessage" @keyup.enter="sendNewMessage()">
                         <button><i class="fa-solid fa-microphone"></i></button>
                     </div>
                 </section>
