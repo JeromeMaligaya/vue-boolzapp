@@ -145,6 +145,7 @@ i{
 
 .contact-list .contact-link{
     height: 70px;
+    cursor: pointer;
 }
 
 .contact-list .contact-link .last-message{
@@ -157,6 +158,7 @@ i{
 .chat-area{
     flex-grow: 1;
     background-image: url(img/mine.png);
+    overflow-y: auto;
 }
 
 .chat-area ul{
@@ -164,6 +166,7 @@ i{
     display: flex;
     flex-direction: column;
     gap: 15px;
+    overflow-y: auto;
 }
 
 .chat-area ul .userMessage,

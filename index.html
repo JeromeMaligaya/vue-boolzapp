@@ -88,12 +88,10 @@
                     <!-- chat-area -->
                     <div class="chat-area">
                         <ul>
-                            <li class="userMessage">
-                                ciao
+                            <li v-for="( mess, index) in contacts[0].messages" class="contactMessage">
+                                {{ mess.message }}
                             </li>
-                            <li class="contactMessage">
-                                ciao
-                            </li>
+
                         </ul>
                     </div>
                     <!-- chat-text -->
