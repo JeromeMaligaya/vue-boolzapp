@@ -6,6 +6,7 @@ const { createApp } = Vue
         currentIndex: 0,
         userNewMessage: '',
         userMessages: [],
+        contactNewMessage: 'Ok',
         contacts: [
           {
               name: 'Michele',
@@ -181,6 +182,14 @@ const { createApp } = Vue
         console.log('userNewMessage',this.userNewMessage)
         console.log('contacts.messages', this.contacts[this.currentIndex].messages)
         this.userNewMessage = '';
+        // rispota dell'interlocutore
+        this.answerContact();
+      },
+      answerContact(){
+        setTimeout( () => {
+            this.contacts[this.currentIndex].messages.push({date: '', message: this.contactNewMessage, status: 'received'});
+            console.log('contactNewMessage', this.contactNewMessage);
+        }, 1000)
       }
     }
   }).mount('#app')
