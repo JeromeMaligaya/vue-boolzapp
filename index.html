@@ -58,9 +58,7 @@
                         <!-- contact-list -->
                         <ul class="contact-list">
                             <!-- contact-link -->
-                          
-                            
-                            <li class="contact-link" v-for="( contact, index ) in contactsFinded" :class="{ 'display-none': contact.visible === false}" @click="selectChat(index)">
+                            <li class="contact-link" v-for="( contact, index ) in contactsFinded" @click="selectChat(index)">
                                 <div class="icon-contact"><img :src="contact.avatar" alt="avatar_1"></div>
                                 <div>
                                     <div>{{ contact.name }}</div>
@@ -75,12 +73,12 @@
                     <header>
                         <div class="chat-left-header">
                             <!-- current-chat -->
-                            <div class="current-chat icon-contact"><img :src="contacts[currentIndex].avatar" alt="avatar_1"></div>
+                            <div class="current-chat icon-contact"><img :src="contactsFinded[currentIndex].avatar" alt="avatar_1"></div>
                             <div>
                                 <!-- current contact name -->
-                                <div>{{ contacts[currentIndex].name }}</div>
+                                <div>{{ contactsFinded[currentIndex].name }}</div>
                                 <!-- current contact last access -->
-                                <div>ultimo accesso {{ contacts[currentIndex].messages[contacts[currentIndex].messages.length-1].date }}</div>
+                                <div>ultimo accesso {{ contactsFinded[currentIndex].messages[contactsFinded[currentIndex].messages.length-1].date }}</div>
                             </div>
                         </div>
                         <div class="chat-right-header">
@@ -93,7 +91,7 @@
                     <div class="chat-area">
                         <ul>
                             <!-- current contact messages sent and received-->
-                            <li v-for="message in contacts[currentIndex].messages" :class="{ 'userMessage': message.status === 'sent',  'contactMessage': message.status === 'received'}">
+                            <li v-for="message in contactsFinded[currentIndex].messages" :class="{ 'userMessage': message.status === 'sent',  'contactMessage': message.status === 'received'}">
                                 {{ message.message }}
                             </li>
                         </ul>

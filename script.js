@@ -179,16 +179,16 @@ const { createApp } = Vue
         console.log('chat-contact-selected', this.currentIndex);
       },
       sendNewMessage(){
-        this.contacts[this.currentIndex].messages.push({date: '', message: this.userNewMessage, status: 'sent'});
+        this.contactsFinded[this.currentIndex].messages.push({date: '', message: this.userNewMessage, status: 'sent'});
         console.log('userNewMessage',this.userNewMessage)
-        console.log('contacts.messages', this.contacts[this.currentIndex].messages)
+        console.log('contactsFinded.messages', this.contactsFinded[this.currentIndex].messages)
         this.userNewMessage = '';
         // risposta dell'interlocutore
         this.answerContact();
       },
       answerContact(){
         setTimeout( () => {
-            this.contacts[this.currentIndex].messages.push({date: '', message: this.contactNewMessage, status: 'received'});
+            this.contactsFinded[this.currentIndex].messages.push({date: '', message: this.contactNewMessage, status: 'received'});
             console.log('contactNewMessage', this.contactNewMessage);
         }, 1000);
       },
@@ -200,12 +200,6 @@ const { createApp } = Vue
         );
         console.log(filteredContacts);
 
-        // se l'elemento non è compreso nella lista filtrata gli assegno contact.visible = false
-        this.contactsFinded.forEach(contact => {
-            if(!filteredContacts.includes(contact)) contact.visible = false
-        });
-
-
         if(this.contactToSearch.length === 0) this.contactsFinded = this.contacts;
         else if(this.contactToSearch.length > 0) this.contactsFinded = filteredContacts;
         console.log(filteredContacts)
@@ -215,7 +209,7 @@ const { createApp } = Vue
     created(){
         // creo un array uguale a contacts su cui lavorarci sopra
         this.contactsFinded = this.contacts;
-    }
+    },
 
 }).mount('#app')
 
