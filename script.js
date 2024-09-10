@@ -204,12 +204,26 @@ const { createApp } = Vue
         else if(this.contactToSearch.length > 0) this.contactsFinded = filteredContacts;
         console.log(filteredContacts)
         console.log(this.contactToSearch)
-    }
+      },
+
+      setTime() {
+        this.contacts.forEach(contact => {
+          contact.messages.forEach(message => {
+            // formatto dates con il formattato ore e minuti
+            message.date = luxon.DateTime.fromFormat(message.date, "dd/MM/yyyy HH:mm:ss").toFormat("HH:mm");
+            console.log(message.date);
+          });
+        });
+      }
     },
     created(){
         // creo un array uguale a contacts su cui lavorarci sopra
         this.contactsFinded = this.contacts;
     },
+    // invoco la funzione qui in modo tale da avere i dates con il formattato desiderato
+    mounted(){
+        this.setTime()
+    }
 
 }).mount('#app')
 
