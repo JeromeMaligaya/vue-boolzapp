@@ -5,8 +5,9 @@ const { createApp } = Vue
       return {
         currentIndex: 0,
         userNewMessage: '',
-        userMessages: [],
         contactNewMessage: 'Ok',
+        contactToSearch: '',
+        contactsFinded: [],
         contacts: [
           {
               name: 'Michele',
@@ -182,17 +183,41 @@ const { createApp } = Vue
         console.log('userNewMessage',this.userNewMessage)
         console.log('contacts.messages', this.contacts[this.currentIndex].messages)
         this.userNewMessage = '';
-        // rispota dell'interlocutore
+        // risposta dell'interlocutore
         this.answerContact();
       },
       answerContact(){
         setTimeout( () => {
             this.contacts[this.currentIndex].messages.push({date: '', message: this.contactNewMessage, status: 'received'});
             console.log('contactNewMessage', this.contactNewMessage);
-        }, 1000)
-      }
+        }, 1000);
+      },
+      
+      searchContact() {
+        // filtro la lista dei contatti in base a contactToSearch
+        const filteredContacts = this.contactsFinded.filter(contact => 
+            contact.name.toLowerCase().includes(this.contactToSearch.toLowerCase())
+        );
+        console.log(filteredContacts);
+
+        // se l'elemento non è compreso nella lista filtrata gli assegno contact.visible = false
+        this.contactsFinded.forEach(contact => {
+            if(!filteredContacts.includes(contact)) contact.visible = false
+        });
+
+
+        if(this.contactToSearch.length === 0) this.contactsFinded = this.contacts;
+        else if(this.contactToSearch.length > 0) this.contactsFinded = filteredContacts;
+        console.log(filteredContacts)
+        console.log(this.contactToSearch)
     }
-  }).mount('#app')
+    },
+    created(){
+        // creo un array uguale a contacts su cui lavorarci sopra
+        this.contactsFinded = this.contacts;
+    }
+
+}).mount('#app')
 
   
 // 1.recupero l'elemento dal Dom

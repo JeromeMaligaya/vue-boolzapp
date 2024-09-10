@@ -53,12 +53,14 @@
                         <!-- search-bar -->
                         <div class="search-bar">
                             <button><i class="fa-solid fa-magnifying-glass"></i></button>
-                            <input id="form-search" type="text" placeholder="Cerca o inizia una nuova chat" v-model="contactToSearch" @keyup.enter="searchContact()">
+                            <input id="form-search" type="text" placeholder="Cerca o inizia una nuova chat" v-model="contactToSearch" @keyup="searchContact()">
                         </div>
                         <!-- contact-list -->
                         <ul class="contact-list">
                             <!-- contact-link -->
-                            <li class="contact-link" v-for="( contact, index ) in contacts" @click="selectChat(index)">
+                          
+                            
+                            <li class="contact-link" v-for="( contact, index ) in contactsFinded" :class="{ 'display-none': contact.visible === false}" @click="selectChat(index)">
                                 <div class="icon-contact"><img :src="contact.avatar" alt="avatar_1"></div>
                                 <div>
                                     <div>{{ contact.name }}</div>
